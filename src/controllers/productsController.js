@@ -40,7 +40,6 @@ const controller = {
 			price:+price,
 			discount:+discount
 		}
-		return res.send('El producto se ha agregado con exito')
 		const productModify=[...products,newProduct]
 		storeProducts(productModify)
         return res.redirect('/')
@@ -72,7 +71,6 @@ const controller = {
             }
             return product
         })
-		return res.send('El producto fue editado con exito')
         storeProducts(productModify)
         return res.redirect('/')
 	},
@@ -80,10 +78,10 @@ const controller = {
 	// Delete - Delete one product from DB
 	destroy : (req, res) => {
 		const productDelete=products.filter(product=> product.id !== +req.params.id)
-		return res.send('El producto fue eliminado')
 		storeProducts(productDelete)
 		return res.redirect('/')
 	}
 };
 
 module.exports = controller
+
