@@ -1,16 +1,16 @@
 // ************ Require's ************
 const express = require('express');
 const router = express.Router();
-const upload=require('../middlewares/uploadFiles')//Multer
-// ************ Controller Require ************
-const productsController = require('../controllers/productsController');
+const upload=require('../middlewares/uploadFiles')//Multer Require
+const productsValidations=require('../validation/productsValidations')//Validations Require
+const productsController = require('../controllers/productsController');//Controller Require
 
 /*** GET ALL PRODUCTS ***/ 
 router.get('/', productsController.index); 
 
 /*** CREATE ONE PRODUCT ***/ 
 router.get('/create', productsController.create); 
-router.post('/',upload.array('images'), productsController.store); 
+router.post('/',upload.array('images'),productsValidations, productsController.store); 
 
 
 /*** GET ONE PRODUCT ***/ 
