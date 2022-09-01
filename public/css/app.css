@@ -406,7 +406,10 @@ textarea.form-input {
   resize: vertical;
   padding: 15px;
 }
-
+.form-error{
+  color: red;
+  font-size: small;
+}
 
 
 /*====== Media-Queries ======*/

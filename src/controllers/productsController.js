@@ -1,13 +1,11 @@
+// ************ Require's ************
 const fs = require('fs');
 const path = require('path');
-
 const productsFilePath = path.join(__dirname, '../data/productsDataBase.json');
 const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
-const storeProducts = (products) => {
-	fs.writeFileSync(productsFilePath, JSON.stringify(products, null, 3), 'utf-8')
-};
-
+const storeProducts = (products) => {fs.writeFileSync(productsFilePath, JSON.stringify(products, null, 3), 'utf-8')};
 const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+const {validationResult}=require('express-validator')
 
 const controller = {
 	// Root - Show all products
@@ -49,7 +47,7 @@ const controller = {
 		} else {
 			return res.render('product-create-form', {//Envia errores a la vista en caso de que los haya para utilizar etiquetas EJS
 				errors: errors.mapped(),//El metodo mapped(), guarda los errores como un objeto literal
-				old:req.body //Los datos anteriores a ser enviados para evitar escribirlos nuevamente
+				old: req.body //Los datos anteriores a ser enviados para evitar escribirlos nuevamente
 			})
 		}
 
