@@ -3,9 +3,9 @@ const fs = require('fs');
 const path = require('path');
 const productsFilePath = path.join(__dirname, '../data/productsDataBase.json');
 const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
-const storeProducts = (products) => {fs.writeFileSync(productsFilePath, JSON.stringify(products, null, 3), 'utf-8')};
+const storeProducts = (products) => { fs.writeFileSync(productsFilePath, JSON.stringify(products, null, 3), 'utf-8') };
 const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-const {validationResult}=require('express-validator')
+const { validationResult } = require('express-validator')
 
 const controller = {
 	// Root - Show all products
@@ -34,12 +34,15 @@ const controller = {
 		if (errors.isEmpty()) {       //Condicional con isEmpty() para comprobar si hay errores
 			const id = products[products.length - 1].id
 			const { name, price, discount } = req.body
+			let images;
+			if (req.files.length > 0) { images = req.files.map(image => image.filename) }
 			const newProduct = {
 				id: +id + 1,
 				...req.body,
 				name: name.trim(),
 				price: +price,
-				discount: +discount
+				discount: +discount,
+				image: images ? images : ['default-image.png']
 			}
 			const productModify = [...products, newProduct]
 			storeProducts(productModify)
@@ -63,24 +66,32 @@ const controller = {
 
 	// Update - Method to update
 	update: (req, res) => {
-		const { name, price, discount, description, category } = req.body
-		const { id } = req.params
-
-		const productModify = products.map(product => {
-			if (product.id === +id) {
-				return {
-					...product,
-					name: name.trim(),
-					price: +price,
-					discount: +discount,
-					category,
-					description
+		const errors = validationResult(req);//Nos provee el método isEmpty() 
+		if (errors.isEmpty()) {       //Condicional con isEmpty() para comprobar si hay errores
+			const { name, price, discount, description, category } = req.body
+			const { id } = req.params
+			const productModify = products.map(product => {
+				if (product.id === +id) {
+					return {
+						...product,
+						name: name.trim(),
+						price: +price,
+						discount: +discount,
+						category,
+						description
+					}
 				}
-			}
-			return product
-		})
-		storeProducts(productModify)
-		return res.redirect('/')
+				return product
+			})
+			storeProducts(productModify)
+			return res.redirect('/')
+		} else {
+			return res.render('product-edit-form', {//Envia errores a la vista en caso de que los haya para utilizar etiquetas EJS
+				errors: errors.mapped(),//El metodo mapped(), guarda los errores como un objeto literal
+				old: req.body, //Los datos anteriores a ser enviados para evitar escribirlos nuevamente
+				productsToEdit
+			})
+		}
 	},
 
 	// Delete - Delete one product from DB
