@@ -86,10 +86,10 @@ const controller = {
 			storeProducts(productModify)
 			return res.redirect('/')
 		} else {
+			const productToEdit = products.find(product => product.id === +req.params.id)
 			return res.render('product-edit-form', {//Envia errores a la vista en caso de que los haya para utilizar etiquetas EJS
 				errors: errors.mapped(),//El metodo mapped(), guarda los errores como un objeto literal
-				old: req.body, //Los datos anteriores a ser enviados para evitar escribirlos nuevamente
-				productsToEdit
+				productToEdit
 			})
 		}
 	},
