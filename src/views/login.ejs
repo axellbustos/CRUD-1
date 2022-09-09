@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<!-- Include Head -->
+<%- include('partials/head', {title: 'Formulario de creación'}) %>
+<body>
+	<!-- Header -->
+	<%- include('partials/headerNavbar') %>
+	<!-- /Header -->
+
+	<div class="container products-wrapper">
+		<div class="row">
+			<div class="col-12">
+				<h2 class="products-title">Formulario de creación de productos</h2>
+			</div>
+		</div>
+		<div class="col-12">
+			<form action="" method="POST" enctype="multipart/form-data">
+				<div class="row product-detail">
+					<div class="col-12 col-md-6">
+						<label for="email" class="form-label">Email:</label>
+						<input type="email" id="email" name="email" placeholder="ingrese su email" class="form-input" >
+						<small class="form-error"><%= locals.errors && errors.name ? errors.name.msg : null %> </small>
+					</div>
+                    <div class="col-12 col-md-6">
+						<label for="password" class="form-label">Contrasena:</label>
+						<input type="password" id="password" name="password" placeholder="ingrese su contrasena" class="form-input" >
+						<small class="form-error"><%= locals.errors && errors.name ? errors.name.msg : null %> </small>
+					</div>
+					<div class="col-12">
+						<button type="submit" class="buy-now-button">Enviar</button>
+					</div>
+				</div>
+			</form>
+		</div>
+
+	</div>
+	<!-- /todos los productos -->
+
+	<!-- footer -->
+	<%- include('partials/footer') %>
+	<!-- /footer -->
+</body>	
+</html>
