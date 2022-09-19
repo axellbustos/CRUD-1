@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<!-- Include Head -->
+<%- include('partials/head', {title: 'Formulario de creación' }) %>
+
+    <body>
+        <!-- Header -->
+        <%- include('partials/headerNavbar') %>
+            <!-- /Header -->
+
+            <div class="container products-wrapper">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="products-title">Formulario de creación de productos</h2>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <form action="">
+                        <div class="row product-detail">
+                            <div class="col-12 col-md-6">
+                                <label class="form-label" for="nombre">Nombre:</label>
+                                <input class="form-input" type="text" id="nombre" autocomplete="off" name="firstName">
+                                <small class="form-error">
+                                    <%= locals.errors && errors.firstName ? errors.firstName.msg : null %>
+                                </small>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label class="form-label" for="apellido">Apellido:</label>
+                                <input class="form-input" min="0" step="0.1" max="10" type="text" id="apellido"
+                                    name="lastName">
+                                <small class="form-error">
+                                    <%= locals.errors && errors.lastName ? errors.lastName.msg : null %>
+                                </small>
+
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label class="form-label" for="email">Email:</label>
+                                <input class="form-input" type="email" id="email" name="email">
+                                <small class="form-error">
+                                    <%= locals.errors && errors.email ? errors.email.msg : null %>
+                                </small>
+
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label class="form-label" for="password">Contraseña:</label>
+                                <input class="form-input" type="password" id="password" name="password">
+                                <small class="form-error">
+                                    <%= locals.errors && errors.password ? errors.password.msg : null %>
+                                </small>
+
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label class="form-label" for="password2">Confirma contraseña:</label>
+                                <input class="form-input" type="password" id="password2">
+                                <small class="form-error">
+                                    <%= locals.errors && errors.password2 ? errors.password2.msg : null %>
+                                </small>
+
+                            </div>
+                            <div class="col-12">
+                                <button class="buy-now-button" type="submit">Registrate</button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+            <!-- /todos los productos -->
+
+            <!-- footer -->
+            <%- include('partials/footer') %>
+                <!-- /footer -->
+    </body>
+
+</html>

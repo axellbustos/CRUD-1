@@ -18,13 +18,13 @@
 				<div class="row product-detail">
 					<div class="col-12 col-md-6">
 						<label for="email" class="form-label">Email:</label>
-						<input type="email" id="email" name="email" placeholder="ingrese su email" class="form-input" >
-						<small class="form-error"><%= locals.errors && errors.name ? errors.name.msg : null %> </small>
+						<input type="email" id="email" name="email" placeholder="ingrese su email" class="form-input" value="<%= locals.old && old.email ? old.email : null %>">
+						<small class="form-error"><%= locals.errors && errors.email ? errors.email.msg : null %> </small>
 					</div>
                     <div class="col-12 col-md-6">
 						<label for="password" class="form-label">Contrasena:</label>
-						<input type="password" id="password" name="password" placeholder="ingrese su contrasena" class="form-input" >
-						<small class="form-error"><%= locals.errors && errors.name ? errors.name.msg : null %> </small>
+						<input type="password" id="password" name="password" placeholder="ingrese su contrasena" class="form-input" value="<%= locals.old && old.password ? old.password : null %>">
+						<small class="form-error"><%= locals.errors && errors.password ? errors.password.msg : null %> </small>
 					</div>
 					<div class="col-12">
 						<button type="submit" class="buy-now-button">Enviar</button>

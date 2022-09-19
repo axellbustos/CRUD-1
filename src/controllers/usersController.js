@@ -5,21 +5,25 @@ const {validationResult}=require('express-validator')
 
 
 module.exports={
+    userRegister:(req, res)=>{
+        return res.render('register')
+    },
     userLogin:(req, res)=>{
         return res.render('login',{
             msg:req.query.error ? 'No tienes los privilegios para ingresar':null
         })
     },
     processLogin:(req, res)=>{
-        return res.send(req.body)
-        /*const errors=validationResult(req)
-        if(errors.notEmpty()){
+        
+        const errors=validationResult(req)
+        if(errors.isEmpty()){
             res.redirect('index',{
             user:req.query.user
         })
         }else{
-            return res.render('login')
-        }*/
+            return res.render('login',{
+                old: errors.mapped()})
+        }
         
     }
 }
