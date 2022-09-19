@@ -7,6 +7,6 @@ const {userLogin,processLogin,userRegister,processRegister}= require('../control
 router.get('/login',userLogin),
 router.post('/login', userValidations, processLogin)
 router.get('/register',userRegister),
-//router.post('/register', userValidations, processRegister)
+router.post('/register', userValidations, processRegister)
 
 module.exports= router

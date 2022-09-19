@@ -1,8 +1,8 @@
 // ************ Require's ************
 const fs = require('fs');
 const path = require('path');
-const productsFilePath = path.join(__dirname, '../data/productsDataBase.json');
-const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
+const{loadProducts}=require("../data/moduleDB")
+const products =loadProducts()
 const storeProducts = (products) => { fs.writeFileSync(productsFilePath, JSON.stringify(products, null, 3), 'utf-8') };
 const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 const { validationResult } = require('express-validator')
