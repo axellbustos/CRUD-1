@@ -10,11 +10,11 @@
 	<div class="container products-wrapper">
 		<div class="row">
 			<div class="col-12">
-				<h2 class="products-title">Formulario de creación de productos</h2>
+				<h2 class="products-title">Login</h2>
 			</div>
 		</div>
 		<div class="col-12">
-			<form action="" method="POST" enctype="multipart/form-data">
+			<form action="" method="POST">
 				<div class="row product-detail">
 					<div class="col-12 col-md-6">
 						<label for="email" class="form-label">Email:</label>
@@ -25,6 +25,10 @@
 						<label for="password" class="form-label">Contrasena:</label>
 						<input type="password" id="password" name="password" placeholder="ingrese su contrasena" class="form-input" value="<%= locals.old && old.password ? old.password : null %>">
 						<small class="form-error"><%= locals.errors && errors.password ? errors.password.msg : null %> </small>
+					</div>
+					<div class="col-12 ">
+						<label for="remember" class="form-label">Recordar usuario:</label>
+						<input type="checkbox" id="remember" name="remember" class="form-input">
 					</div>
 					<div class="col-12">
 						<button type="submit" class="buy-now-button">Enviar</button>

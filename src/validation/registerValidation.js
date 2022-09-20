@@ -1,7 +1,5 @@
 const { check, body } = require('express-validator');
-const fs = require('fs')
-const path = require("path");
-const loadUsers = JSON.parse(fs.readFileSync(path.join(__dirname, '../data/usersDB.json'), 'utf-8'));
+const {loadUsers}=require('../data/moduleDB')
 module.exports = [
     check('firstName')
     .notEmpty().withMessage('Éste campo es obligatorio').bail()
@@ -21,7 +19,11 @@ module.exports = [
 
     check('email')
         .notEmpty().withMessage('este campo no puede quedar vacio').bail()
-        .isEmail().withMessage('debe colocar un email'),
+        .isEmail().withMessage('debe colocar un email')
+        .custom((value)=>{
+            const user=loadUsers().find(user=> user.email === value)
+            return user ? false :  true
+        }).withMessage('Este email ya fue registrado'),
 
     check('password')
         .notEmpty().withMessage('Éste campo es obligatorio').bail()
@@ -38,5 +40,4 @@ module.exports = [
             }
             return true
         }).withMessage('Las contraseñas deban coincidir')
-
 ]

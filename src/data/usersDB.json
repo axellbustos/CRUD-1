@@ -4,5 +4,11 @@
       "firstName": "axel",
       "email": "axel@gmail.com",
       "password": "$2a$10$FHYLjU8iRMiycvi2tBSI.ep7/Q.lk1bqicSWGQaxC9YvP9av/EnOu"
+   },
+   {
+      "id": 2,
+      "firstName": "prueba",
+      "email": "prueba@prueba.com",
+      "password": "$2a$10$po3iHH0czXlQSpmRulYjCu.yqoNdukRv0NEqYjj0CvAIoXlcvBLri"
    }
 ]
