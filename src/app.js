@@ -29,15 +29,18 @@ app.set('views', path.join(__dirname, '/views')); // Define la ubicación de la 
 const mainRouter = require('./routes/main'); // Rutas main
 const productsRouter = require('./routes/products'); // Rutas /products
 const usersRouter =require('./routes/users');
+const usersCheck=require('./middlewares/usersCheck');
 
-app.use('/', mainRouter);
-app.use('/products', productsRouter);
-app.use('/users',usersRouter);
 app.use(session({
   secret:'mercado liebre',
   resave:false,
   saveUninitialized:true
 }));
+app.use(usersCheck);
+app.use('/', mainRouter);
+app.use('/products', productsRouter);
+app.use('/users',usersRouter);
+
 
 
 

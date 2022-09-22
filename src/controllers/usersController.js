@@ -40,8 +40,12 @@ module.exports = {
 
         const errors = validationResult(req)
         if (errors.isEmpty()) {
+            let {id, firstName}= loadUsers().find(user=> user.email === req.body.email);
+            req.session.login ={
+                id, firstName
+            }
             
-            res.redirect('/')
+            return res.redirect('/')
         } else {
             
             return res.render('login', {
