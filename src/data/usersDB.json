@@ -10,5 +10,13 @@
       "firstName": "prueba",
       "email": "prueba@prueba.com",
       "password": "$2a$10$po3iHH0czXlQSpmRulYjCu.yqoNdukRv0NEqYjj0CvAIoXlcvBLri"
+   },
+   {
+      "firstName": "axel",
+      "lastName": "bustos",
+      "email": "axell.bustos@gmail.com",
+      "password": "$2a$10$3brDTb3IPb7EXhZDHYU1W.GcgdRWlXeNMEyrj/tvZ8ZsnTZRGrVz.",
+      "password2": "axelaxel",
+      "id": 3
    }
 ]

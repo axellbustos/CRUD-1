@@ -15,6 +15,7 @@ module.exports = {
             const users = loadUsers();
 
             const newUser = {
+                ...req.body,
                 id: users[users.length - 1] ? users[users.length - 1].id + 1 : 1,
                 firstName: firstName.trim(),
                 email: email.trim(),
@@ -31,7 +32,6 @@ module.exports = {
                 old: req.body
             })
         }
-
     },
     userLogin: (req, res) => {
         return res.render('login')
@@ -42,9 +42,9 @@ module.exports = {
         if (errors.isEmpty()) {
             let {id, firstName}= loadUsers().find(user=> user.email === req.body.email);
             req.session.login ={
-                id, firstName
+                id, 
+                firstName
             }
-            
             return res.redirect('/')
         } else {
             
@@ -53,6 +53,17 @@ module.exports = {
                 old: req.body
             })
         }
+    },
+    profile: (req, res) => {
+        let user = loadUsers().find(user => user.id === +req.session.login.id);
+        
+        return res.render('profile', {
+            user
+        });
+    },
+    logout: (req, res)=>{
+        req.session.destroy()
 
+        return res.redirect('/')
     }
 }
