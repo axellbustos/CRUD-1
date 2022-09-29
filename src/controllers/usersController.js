@@ -45,6 +45,9 @@ module.exports = {
                 id, 
                 firstName
             }
+            if(req.body.remember != undefined){
+                res.cookie('remember', req.session.login, {maxAge: 600000})
+            }
             return res.redirect('/')
         } else {
             

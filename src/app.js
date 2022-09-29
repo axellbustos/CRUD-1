@@ -6,7 +6,6 @@ const logger = require('morgan');
 const path = require('path');
 const methodOverride =  require('method-override'); // Pasar poder usar los métodos PUT y DELETE
 const session= require('express-session');
-
 // ************ express() - (don't touch) ************
 const app = express();
 
@@ -30,12 +29,14 @@ const mainRouter = require('./routes/main'); // Rutas main
 const productsRouter = require('./routes/products'); // Rutas /products
 const usersRouter =require('./routes/users');
 const usersCheck=require('./middlewares/usersCheck');
+const rememberAuth= require('./middlewares/rememberAuth');
 
 app.use(session({
   secret:'mercado liebre',
   resave:false,
   saveUninitialized:true
 }));
+app.use(rememberAuth)
 app.use(usersCheck);
 app.use('/', mainRouter);
 app.use('/products', productsRouter);
